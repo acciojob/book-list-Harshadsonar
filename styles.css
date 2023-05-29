@@ -1,1 +1,21 @@
 /*  your css code here. If applicable */
+/*  your css code here. If applicable */
+
+h1 {
+    text-align: center;
+}
+
+input {
+    width: 90%;
+}
+
+table,
+th,
+td {
+    padding-right: 80px;
+}
+
+button {
+    color: white;
+    background-color: blue;
+}

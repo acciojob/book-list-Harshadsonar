@@ -3,14 +3,74 @@
 <html>
 
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <title>MyBookList</title>
+    <style>
+        .delete {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function addBook() {
+            var title = document.getElementById('title').value;
+            var author = document.getElementById('author').value;
+            var isbn = document.getElementById('isbn').value;
+
+            var table = document.getElementById('book-list');
+            var newRow = table.insertRow(table.rows.length);
+            var titleCell = newRow.insertCell(0);
+            var authorCell = newRow.insertCell(1);
+            var isbnCell = newRow.insertCell(2);
+            var deleteCell = newRow.insertCell(3);
+
+            titleCell.innerHTML = title;
+            authorCell.innerHTML = author;
+            isbnCell.innerHTML = isbn;
+            deleteCell.innerHTML = '<span class="delete" onclick="deleteBook(this)">Clear</span>';
+
+            document.getElementById('title').value = '';
+            document.getElementById('author').value = '';
+            document.getElementById('isbn').value = '';
+        }
+
+        function deleteBook(row) {
+            var i = row.parentNode.parentNode.rowIndex;
+            document.getElementById('book-list').deleteRow(i);
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
-
+    <form action="#">
+        <h1>MyBookList</h1>
+        <div class="form-group">
+            <label for="title" id="title">Title</label><br>
+            <input type="text" id="title">
+        </div>
+        <div class="form-group">
+            <label for="author" id="author">Author</label><br>
+            <input type="text" id="author">
+        </div>
+        <div class="form-group">
+            <label for="isbn" id="isbn">ISBN#</label><br>
+            <input type="number" id="isbn">
+        </div>
+        <div class="form-group">
+            <button id="submit" onclick="addBook()">Add Book</button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <th>
+                <td>Title</td>
+                <td>Author</td>
+                <td>ISBN#</td>
+            </th>
+        </thead>
+        <tbody id="book-list">
+        </tbody>
+    </table>
 </body>
 
 </html>
